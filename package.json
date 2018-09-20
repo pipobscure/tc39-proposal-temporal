@@ -1,0 +1,40 @@
+{
+  "name": "tc39-proposal-temporal",
+  "version": "1.0.3",
+  "description": "TC39 Temporal Proposal Polyfill",
+  "main": "index.js",
+  "module": "lib/index.mjs",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test:parts:epoch": "rollup --format=cjs --file=test/parts/epoch/epoch.js -- lib/gregorian/epoch.mjs && tape test/parts/epoch/**/*.t.js",
+    "test:parts:strutil": "rollup --format=cjs --file=test/parts/strutil/strutil.js -- lib/strutil.mjs && tape test/parts/strutil/**/*.t.js",
+    "test:parts:zoneutil": "rollup --format=cjs --file=test/parts/zoneutil/zoneutil.js -- lib/zoneutil.mjs && tape test/parts/zoneutil/**/*.t.js",
+    "test:parts": "npm run test:parts:epoch && npm run test:parts:strutil && npm run test:parts:zoneutil",
+    "test:compat": "tape test/compat/**/*.js",
+    "test:bigint": "for FILE in $(find test/temporal -type f -name '*.js' | grep -v 'test/node.js'); do node -r ./test/node.js $FILE; if [ $? = 0 ]; then echo 'OK ' $FILE; else echo 'FAIL ' $FILE; fi; done",
+    "test": "npm run build && npm run test:parts && npm run test:compat && npm run test:bigint",
+    "prepare": "npm run build",
+    "build": "rollup -c rollup.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pipobscure/tc39-temporal-polyfill.git"
+  },
+  "keywords": [
+    "TC39",
+    "Polyfill",
+    "Temporal"
+  ],
+  "author": "Philipp Dunkel <pdunkel1@bloomberg.net>",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "rollup": "^0.59.1",
+    "rollup-plugin-license": "^0.6.0",
+    "rollup-plugin-node-resolve": "^3.3.0",
+    "tape": "^4.9.1"
+  }
+}
