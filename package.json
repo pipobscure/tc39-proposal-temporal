@@ -9,13 +9,9 @@
     "test": "test"
   },
   "scripts": {
-    "test:parts:epoch": "rollup --format=cjs --file=test/parts/epoch/epoch.js -- lib/gregorian/epoch.mjs && tape test/parts/epoch/**/*.t.js",
-    "test:parts:strutil": "rollup --format=cjs --file=test/parts/strutil/strutil.js -- lib/strutil.mjs && tape test/parts/strutil/**/*.t.js",
-    "test:parts:zoneutil": "rollup --format=cjs --file=test/parts/zoneutil/zoneutil.js -- lib/zoneutil.mjs && tape test/parts/zoneutil/**/*.t.js",
-    "test:parts": "npm run test:parts:epoch && npm run test:parts:strutil && npm run test:parts:zoneutil",
-    "test:compat": "tape test/compat/**/*.js",
-    "test:bigint": "for FILE in $(find test/temporal -type f -name '*.js' | grep -v 'test/node.js'); do node -r ./test/node.js $FILE; if [ $? = 0 ]; then echo 'OK ' $FILE; else echo 'FAIL ' $FILE; fi; done",
-    "test": "npm run build && npm run test:parts && npm run test:compat && npm run test:bigint",
+    "test:es7": "for t in $(ls test/*.mjs); do \"./$t\"; done",
+    "test:262": "npm run build && for FILE in $(find test262/temporal -type f -name '*.js' | grep -v 'test262/node.js'); do node -r ./test262/node.js $FILE; if [ $? = 0 ]; then echo 'OK ' $FILE; else echo 'FAIL ' $FILE; fi; done",
+    "test": "npm run test:es7 && npm run test:262",
     "prepare": "npm run build",
     "build": "rollup -c rollup.config.js"
   },
@@ -30,7 +26,6 @@
   ],
   "author": "Philipp Dunkel <pdunkel1@bloomberg.net>",
   "license": "MIT",
-  "dependencies": {},
   "devDependencies": {
     "rollup": "^0.59.1",
     "rollup-plugin-license": "^0.6.0",

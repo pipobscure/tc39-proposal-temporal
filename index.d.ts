@@ -19,16 +19,14 @@ export class Instant {
 export class ZonedInstant {
   constructor(instant : Instant, timeZone: string);
 
-  readonly seconds: number;
-  readonly milliseconds: number;
-  readonly microseconds: BigInt;
-  readonly nanoseconds: BigInt;
-  readonly timeZone: string;
+  readonly instant: Instant;
+  readonly offsetSeconds : number;
   readonly offsetString: string;
   readonly ianaZone: string | undefined;
+  readonly timeZone: string;
 
-  toInstant() : Instant;
   toString(): string;
+  toJSON(): string;
 
   static fromString(isostring: string) : ZonedInstant;
   static fromSeconds(seconds : number, zone : string) : ZonedInstant;
@@ -37,23 +35,23 @@ export class ZonedInstant {
   static fromNanoseconds(nanos : BigInt, zone : string) : ZonedInstant;
 }
 
-export interface GregorianDateValues {
-  year?: number;
-  month?: number;
-  day?: number;
+export interface CivilDateValues {
+  years?: number;
+  months?: number;
+  days?: number;
 }
-export interface GregorianTimeValues {
-  hour?: number;
-  minute?: number;
-  second?: number;
-  millisecond?: number;
-  microsecond?: number;
-  nanosecond?: number;
+export interface CivilTimeValues {
+  hours?: number;
+  minutes?: number;
+  seconds?: number;
+  milliseconds?: number;
+  microseconds?: number;
+  nanoseconds?: number;
 }
-export interface GregorianDateTimeValues extends GregorianTimeValues, GregorianDateValues {
+export interface CivilDateTimeValues extends CivilTimeValues, CivilDateValues {
 }
 
-export class GregorianDateTime implements GregorianDateTimeValues {
+export class CivilDateTime {
   constructor(years : number, months : number, days : number, hours : number, minutes : number, seconds : number = 0, nanoseconds : number = 0);
 
   readonly year : number;
@@ -69,10 +67,8 @@ export class GregorianDateTime implements GregorianDateTimeValues {
   readonly dayOfYear : number;
   readonly weekOfYear : number;
 
-  plus(data: GregorianDateTimeValues) : GregorianDateTime;
-  with(values: GregorianDateTimeValues) : GregorianDateTime;
-  toGregorianDate() : GregorianDate;
-  toGregorianTime() : GregorianTime;
+  plus(data: CivilDateTimeValues) : CivilDateTime;
+  with(values: CivilDateTimeValues) : CivilDateTime;
   withZone(zone : string) : ZonedInstant;
   toString() : string;
   toJSON() : string;
@@ -80,11 +76,13 @@ export class GregorianDateTime implements GregorianDateTimeValues {
   toWeekDateTimeString() : string;
   toOrdinalDateTimeString() : string;
 
-  static from(date?: GregorianDate, time?:GregorianTime) : GregorianDateTime;
-  static fromString(isostring: string): GregorianDateTime;
-  static fromZonedInstant(instant: ZonedInstant): GregorianDateTime;
+  static fromDateTimeString(isostring : string): string;
+  static fromWeekDateTimeString(isostring : string): string;
+  static fromOrdinalDateTimeString(isostring : string): string;
+  static fromString(isostring: string): CivilDateTime;
+  static fromZonedInstant(instant: ZonedInstant): CivilDateTime;
 }
-export class GregorianDate implements GregorianDateValues {
+export class CivilDate {
   constructor(years : number, months: number, days : number);
 
   readonly year : number;
@@ -94,19 +92,20 @@ export class GregorianDate implements GregorianDateValues {
   readonly dayOfYear : number;
   readonly weekOfYear : number;
 
-  plus(data : GregorianDateValues) : GregorianDate;
-  with(values : GregorianDateValues) : GregorianDate;
-  withTime(time : GregorianTime) : GregorianDateTime;
+  plus(data : CivilDateValues) : CivilDate;
+  with(values : CivilDateValues) : CivilDate;
+  withTime(time : CivilTime) : CivilDateTime;
   toString() : string;
   toJSON() : string;
   toDateString() : string;
   toWeekDateString() : string;
   toOrdinalDateString() : string;
 
-  static fromString(isostring : string) : GregorianDate;
-  static fromZonedInstant(instant : ZonedInstant) : GregorianDate;
+  static fromString(isostring : string) : CivilDate;
+  static fromZonedInstant(instant : ZonedInstant) : CivilDate;
+  static fromDateTime(datetime : CivilDateTime) : CivilDate;
 }
-export class GregorianTime implements GregorianTimeValues {
+export class CivilTime {
   constructor(hours : number, minutes : number, seconds? : number, nanoseconds?: number);
 
   readonly hour : number;
@@ -116,12 +115,13 @@ export class GregorianTime implements GregorianTimeValues {
   readonly microsecond : number;
   readonly nanosecond : number;
 
-  plus(data : GregorianTimeValues) : GregorianTime;
-  with(values : GregorianTimeValues) : GregorianTime;
-  withDate(date : GregorianDate) : GregorianDateTime;
+  plus(data : CivilTimeValues) : CivilTime;
+  with(values : CivilTimeValues) : CivilTime;
+  withDate(date : CivilDate) : CivilDateTime;
   toString() : string;
   toJSON() : string;
 
-  static fromString(isostring : string) : GregorianTime;
-  static fromZonedInstant(instant : ZonedInstant) : GregorianTime;
+  static fromString(isostring : string) : CivilTime;
+  static fromZonedInstant(instant : ZonedInstant) : CivilTime;
+  static fromDateTime(datetime: CivilDateTime): CivilTime;
 }
