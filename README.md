@@ -8,7 +8,7 @@ it will implement suggestions to try out that have not yet been agreed. Use with
 ## Documentation
 
  * [Instant](docs/instant.md)
- * [ZonedInstant](docs/zoned.md)
+ * [ZonedDateTime](docs/zoned.md)
  * [CivilDateTime](docs/civildatetime.md)
  * [CivilDate](docs/civildate.md)
  * [CivilTime](docs/civiltime.md)

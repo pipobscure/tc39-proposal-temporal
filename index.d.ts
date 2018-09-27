@@ -6,7 +6,7 @@ export class Instant {
   readonly microseconds: BigInt;
   readonly nanoseconds: BigInt;
 
-  withZone(timeZone : string) : ZonedInstant;
+  withZone(timeZone : string) : ZonedDateTime;
   toString() : string;
   toJSON() : string;
 
@@ -16,7 +16,7 @@ export class Instant {
   static fromMicroseconds(micros: BigInt) : Instant;
   static fromNanoseconds(nanos: BigInt) : Instant;
 }
-export class ZonedInstant {
+export class ZonedDateTime {
   constructor(instant : Instant, timeZone: string);
 
   readonly instant: Instant;
@@ -28,11 +28,11 @@ export class ZonedInstant {
   toString(): string;
   toJSON(): string;
 
-  static fromString(isostring: string) : ZonedInstant;
-  static fromSeconds(seconds : number, zone : string) : ZonedInstant;
-  static fromMilliseconds(milliseconds : number, zone : string) : ZonedInstant;
-  static fromMicroseconds(micros : BigInt, zone : string) : ZonedInstant;
-  static fromNanoseconds(nanos : BigInt, zone : string) : ZonedInstant;
+  static fromString(isostring: string) : ZonedDateTime;
+  static fromSeconds(seconds : number, zone : string) : ZonedDateTime;
+  static fromMilliseconds(milliseconds : number, zone : string) : ZonedDateTime;
+  static fromMicroseconds(micros : BigInt, zone : string) : ZonedDateTime;
+  static fromNanoseconds(nanos : BigInt, zone : string) : ZonedDateTime;
 }
 
 export interface CivilDateValues {
@@ -69,7 +69,7 @@ export class CivilDateTime {
 
   plus(data: CivilDateTimeValues) : CivilDateTime;
   with(values: CivilDateTimeValues) : CivilDateTime;
-  withZone(zone : string) : ZonedInstant;
+  withZone(zone : string) : ZonedDateTime;
   toString() : string;
   toJSON() : string;
   toDateTimeString() : string;
@@ -80,7 +80,7 @@ export class CivilDateTime {
   static fromWeekDateTimeString(isostring : string): string;
   static fromOrdinalDateTimeString(isostring : string): string;
   static fromString(isostring: string): CivilDateTime;
-  static fromZonedInstant(instant: ZonedInstant): CivilDateTime;
+  static fromZonedDateTime(instant: ZonedDateTime): CivilDateTime;
 }
 export class CivilDate {
   constructor(years : number, months: number, days : number);
@@ -102,7 +102,7 @@ export class CivilDate {
   toOrdinalDateString() : string;
 
   static fromString(isostring : string) : CivilDate;
-  static fromZonedInstant(instant : ZonedInstant) : CivilDate;
+  static fromZonedDateTime(instant : ZonedDateTime) : CivilDate;
   static fromDateTime(datetime : CivilDateTime) : CivilDate;
 }
 export class CivilTime {
@@ -122,6 +122,6 @@ export class CivilTime {
   toJSON() : string;
 
   static fromString(isostring : string) : CivilTime;
-  static fromZonedInstant(instant : ZonedInstant) : CivilTime;
+  static fromZonedDateTime(instant : ZonedDateTime) : CivilTime;
   static fromDateTime(datetime: CivilDateTime): CivilTime;
 }

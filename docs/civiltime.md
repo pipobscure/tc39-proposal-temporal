@@ -85,13 +85,13 @@ Creates a new `CivilTime` by parsing an ISO-8601 string in the format created by
 ---
 
  * [Instant][1]
- * [ZonedInstant][2]
+ * [ZonedDateTime][2]
  * [CivilDateTime][3]
  * [CivilDate][4]
  * [CivilTime][5]
 
 [1]: instant.md "Instant"
-[2]: zoned.md "ZonedInstant"
+[2]: zoned.md "ZonedDateTime"
 [3]: civildatetime.md "CivilDateTime"
 [4]: civildate.md "CivilDate"
 [5]: civiltime.md "CivilTime"

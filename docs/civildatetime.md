@@ -23,10 +23,10 @@ The constructor may only be called as such. It takes between 5 and 7 numeric arg
  * `microseconds` microseconds of the milliseconds *(default: 0)*
  * `nanoseconds` nanoseconds of the microseconds *(default: 0)*
 
-## `CivilDateTime.fromZonedInstant(instant: ZonedInstant): CivilDateTime`
+## `CivilDateTime.fromZonedDateTime(instant: ZonedDateTime): CivilDateTime`
 
-`fromZonedInstant` creates a new `CivilDateTime` object by calculating its values based of the
-`ZonedInstant` passed in.
+`fromZonedDateTime` creates a new `CivilDateTime` object by calculating its values based of the
+`ZonedDateTime` passed in.
 
 ## `datetime.year : number`
 
@@ -100,14 +100,14 @@ The algorithm is such that:
 Creates a new `CivilDateTime` object by overriding specified values to its members.
 The specified values must be numeric if specified.
 
-## `datetime.withZone(zone : string, filter?: string | number | function) : ZonedInstant`
+## `datetime.withZone(zone : string, filter?: string | number | function) : ZonedDateTime`
 
-Creates a `ZonedInstant` object from this `CivilDateTime` within a specific time-zone. The
-`zone` must be a `string` specifying an IANA-Timezone or an offset string as defined in [ZonedInstant](./zoned.md).
+Creates a `ZonedDateTime` object from this `CivilDateTime` within a specific time-zone. The
+`zone` must be a `string` specifying an IANA-Timezone or an offset string as defined in [ZonedDateTime](./zoned.md).
 The `filter` argument can be either a `string` in the offset format, a number specifying the seconds offset from UTC, or a function that can be passed to `Array.prorotype.find` to decide which possible
 result to choose.
 
-Since a given `CivilDateTime` can specify multiple `ZonedInstant`s with different offsets (near DST changes), this can be used to be unambiguous in which result is selected.
+Since a given `CivilDateTime` can specify multiple `ZonedDateTime`s with different offsets (near DST changes), this can be used to be unambiguous in which result is selected.
 
 If no `filter` is passed, then the earlier result of potentially multiple is chosen.
 
@@ -172,13 +172,13 @@ Creates a new `CivilDateTime` by parsing an ISO-8601 string in the one of the fo
 ---
 
  * [Instant][1]
- * [ZonedInstant][2]
+ * [ZonedDateTime][2]
  * [CivilDateTime][3]
  * [CivilDate][4]
  * [CivilTime][5]
 
 [1]: instant.md "Instant"
-[2]: zoned.md "ZonedInstant"
+[2]: zoned.md "ZonedDateTime"
 [3]: civildatetime.md "CivilDateTime"
 [4]: civildate.md "CivilDate"
 [5]: civiltime.md "CivilTime"

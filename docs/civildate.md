@@ -17,10 +17,10 @@ The constructor may only be called as such. It takes 3 numeric arguments.
  * `month` the Gregorian month
  * `day` the Gregorian day of the month
 
-## `CivilDate.fromZonedInstant(instant: ZonedInstant): CivilDate`
+## `CivilDate.fromZonedDateTime(instant: ZonedDateTime): CivilDate`
 
-`fromZonedInstant` creates a new `CivilDate` object by calculating its values based of the
-`ZonedInstant` passed in.
+`fromZonedDateTime` creates a new `CivilDate` object by calculating its values based of the
+`ZonedDateTime` passed in.
 
 ## `date.year : number`
 
@@ -123,13 +123,13 @@ Creates a new `CivilDate` by parsing an ISO-8601 string in the one of the format
 ---
 
  * [Instant][1]
- * [ZonedInstant][2]
+ * [ZonedDateTime][2]
  * [CivilDateTime][3]
  * [CivilDate][4]
  * [CivilTime][5]
 
 [1]: instant.md "Instant"
-[2]: zoned.md "ZonedInstant"
+[2]: zoned.md "ZonedDateTime"
 [3]: civildatetime.md "CivilDateTime"
 [4]: civildate.md "CivilDate"
 [5]: civiltime.md "CivilTime"

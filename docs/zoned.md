@@ -2,23 +2,23 @@
 
 ---
 
-# `ZonedInstant`
+# `ZonedDateTime`
 
-A `ZonedInstant` is an object that specifies a specific point in time in a specific time-zone.
+A `ZonedDateTime` is an object that specifies a specific point in time in a specific time-zone.
 It bases this on an `Instant` and a timezone `string`.
 
-## `new ZonedInstant(instant : Instant, timeZone: string)`
+## `new ZonedDateTime(instant : Instant, timeZone: string)`
 
 The constructor may only be called as such. It takes two arguments. The first is an instance
 of `Instant` and the second is a `string` representing a valid IANA timezone or an offset.
 
 ## `zoned.instant: Instant`
 
-The instance of `Instant` that was used to create this `ZonedInstant`.
+The instance of `Instant` that was used to create this `ZonedDateTime`.
 
 ## `zoned.offsetSeconds : number`
 
-The number of seconds the `ZonedInstant`'s time is offset from *UTC*.
+The number of seconds the `ZonedDateTime`'s time is offset from *UTC*.
 
 ## `zoned.offsetString: string`
 
@@ -34,7 +34,7 @@ Examples: `+00:00`, `-04:00`, `+03:00`, ...
 
 ## `zoned.ianaZone: string | undefined`
 
-If the `ZonedInstant` was created using an IANA-Timezone (rather than an offset) this property will
+If the `ZonedDateTime` was created using an IANA-Timezone (rather than an offset) this property will
 return that timezone string. Otherwise this property will be `undefined`.
 
 ## `zoned.timeZone: string`
@@ -62,36 +62,36 @@ Examples:
 
 Equivalent to `zoned.toString()`.
 
-## `ZonedInstant.fromString(isostring: string) : ZonedInstant`
+## `ZonedDateTime.fromString(isostring: string) : ZonedDateTime`
 
 Parses a `string` in the specific ISO-8601 format emitted by `zoned.toString()`.
 
-## `ZonedInstant.fromSeconds(seconds : number, zone : string) : ZonedInstant`
+## `ZonedDateTime.fromSeconds(seconds : number, zone : string) : ZonedDateTime`
 
-Equivalent to `new ZonedInstant(Instant.fromSeconds(seconds), zone)`.
+Equivalent to `new ZonedDateTime(Instant.fromSeconds(seconds), zone)`.
 
-## `ZonedInstant.fromMilliseconds(milliseconds : number, zone : string) : ZonedInstant`
+## `ZonedDateTime.fromMilliseconds(milliseconds : number, zone : string) : ZonedDateTime`
 
-Equivalent to `new ZonedInstant(Instant.fromMilliseconds(milliseconds), zone)`.
+Equivalent to `new ZonedDateTime(Instant.fromMilliseconds(milliseconds), zone)`.
 
-## `ZonedInstant.fromMicroseconds(micros : BigInt, zone : string) : ZonedInstant`
+## `ZonedDateTime.fromMicroseconds(micros : BigInt, zone : string) : ZonedDateTime`
 
-Equivalent to `new ZonedInstant(Instant.fromMicroseconds(micros), zone)`.
+Equivalent to `new ZonedDateTime(Instant.fromMicroseconds(micros), zone)`.
 
-## `ZonedInstant.fromNanoseconds(nanos : BigInt, zone : string) : ZonedInstant`
+## `ZonedDateTime.fromNanoseconds(nanos : BigInt, zone : string) : ZonedDateTime`
 
-Equivalent to `new ZonedInstant(Instant.fromNanoseconds(nanos), zone)`.
+Equivalent to `new ZonedDateTime(Instant.fromNanoseconds(nanos), zone)`.
 
 ---
 
  * [Instant][1]
- * [ZonedInstant][2]
+ * [ZonedDateTime][2]
  * [CivilDateTime][3]
  * [CivilDate][4]
  * [CivilTime][5]
 
 [1]: instant.md "Instant"
-[2]: zoned.md "ZonedInstant"
+[2]: zoned.md "ZonedDateTime"
 [3]: civildatetime.md "CivilDateTime"
 [4]: civildate.md "CivilDate"
 [5]: civiltime.md "CivilTime"

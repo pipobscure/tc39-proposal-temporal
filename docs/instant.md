@@ -52,11 +52,11 @@ since unix-epoch*.
 The `nanoseconds` property of an `Instant` object is readonly and represents the *nanoseconds
 since unix-epoch*.
 
-## `instant.withZone(timeZone : string) : ZonedInstant`
+## `instant.withZone(timeZone : string) : ZonedDateTime`
 
-This creates a `ZonedInstant` by applying a *iana timezone* or an *offset-string* to the instant.
+This creates a `ZonedDateTime` by applying a *iana timezone* or an *offset-string* to the instant.
 
-This is equivalent to `new ZonedInstant(instant, zone)`
+This is equivalent to `new ZonedDateTime(instant, zone)`
 
 ## `instant.toString() : string`
 
@@ -73,13 +73,13 @@ Equivalent to `instant.toString()`.
 ---
 
  * [Instant][1]
- * [ZonedInstant][2]
+ * [ZonedDateTime][2]
  * [CivilDateTime][3]
  * [CivilDate][4]
  * [CivilTime][5]
 
 [1]: instant.md "Instant"
-[2]: zoned.md "ZonedInstant"
+[2]: zoned.md "ZonedDateTime"
 [3]: civildatetime.md "CivilDateTime"
 [4]: civildate.md "CivilDate"
 [5]: civiltime.md "CivilTime"

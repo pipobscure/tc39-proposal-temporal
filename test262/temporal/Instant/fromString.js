@@ -3,7 +3,7 @@
 
 /*---
 description: >
-    fromString Tests for ZonedInstant (This assumes TZ=Europe/London)
+    fromString Tests for ZonedDateTime (This assumes TZ=Europe/London)
 author: Philipp Dunkel
 esid: pending
 ---*/
