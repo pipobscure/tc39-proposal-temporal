@@ -13,7 +13,8 @@ import {
   toDayOfYear,
   fromDayOfYear,
   toWeekOfYear,
-  fromWeekOfYear
+  fromWeekOfYear,
+  plus
 } from '../lib/civil/shared.mjs';
 
 test('isLeapYear()', ({ equal, end })=>{
@@ -78,5 +79,72 @@ test('fromWeekOfYear()', ({ deepEqual, end })=>{
   deepEqual(fromWeekOfYear(2015, 53, 5), { year: 2016, month: 1, day: 1 });
   deepEqual(fromWeekOfYear(2015, 53, 6), { year: 2016, month: 1, day: 2 });
   deepEqual(fromWeekOfYear(2015, 53, 7), { year: 2016, month: 1, day: 3 });
+  end();
+});
+
+test('plus should be transparent', ({ deepEqual, end }) => {
+  deepEqual(plus({}, {
+    years: 2015, months: 3, days: 5,
+    hours: 14, minutes: 23, seconds: 51,
+    milliseconds: 23, microseconds: 25, nanoseconds: 424
+  }), {
+    year: 2015, month: 3, day: 5,
+    hour: 14, minute: 23, second: 51,
+    nanosecond: 23025424
+  });
+
+  deepEqual(plus({}, {
+    years: 2019, months: 3, days: 13,
+    hours: 14, minutes: 24, seconds: 55,
+    milliseconds: 23, microseconds: 25, nanoseconds: 4
+  }), {
+    year: 2019, month: 3, day: 13,
+    hour: 14, minute: 24, second: 55,
+    nanosecond: 23025004
+  });
+  end();
+});
+
+test('plus should overflow correctly', ({ deepEqual, end }) => {
+  deepEqual(plus({}, {
+    years: 1970, months: 1, days: 1,
+    hours: 0, minutes: 0, seconds: 0,
+    milliseconds: 0, microseconds: 0, nanoseconds: Number.MAX_SAFE_INTEGER
+  }), {
+    year: 1970, month: 4, day: 15,
+    hour: 5, minute: 59,
+    second: 59, nanosecond: 254740991
+  });
+
+  deepEqual(plus({}, {
+    years: 1970, months: 1, days: 1,
+    hours: 0, minutes: 0, seconds: 0,
+    milliseconds: 0, microseconds: Number.MAX_SAFE_INTEGER / 1E3, nanoseconds: 0
+  }), {
+    year: 1970, month: 4, day: 15,
+    hour: 5, minute: 59,
+    second: 59, nanosecond: 254740990
+  });
+
+  deepEqual(plus({}, {
+    years: 1970, months: 1, days: 1,
+    hours: 0, minutes: 0, seconds: 0,
+    milliseconds: Number.MAX_SAFE_INTEGER / 1E6, microseconds: 0, nanoseconds: 0
+  }), {
+    year: 1970, month: 4, day: 15,
+    hour: 5, minute: 59,
+    second: 59, nanosecond: 254740992
+  });
+
+  deepEqual(plus({}, {
+    years: 1970, months: 1, days: 1,
+    hours: 0, minutes: 0, seconds: Number.MAX_SAFE_INTEGER / 1E6,
+    milliseconds: 0, microseconds: 0, nanoseconds: 0
+  }), {
+    year: 2255, month: 6, day: 5,
+    hour: 23, minute: 47,
+    second: 34, nanosecond: 0
+  });
+
   end();
 });

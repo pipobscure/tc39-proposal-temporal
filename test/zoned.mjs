@@ -18,6 +18,9 @@ test('new Zoned()', ({ equal, end }) => {
   equal((new Zoned(instant, '+1')).toString(), '1976-11-18T15:23:30.123000000+01:00');
   equal((new Zoned(instant, '+0100')).toString(), '1976-11-18T15:23:30.123000000+01:00');
   equal((new Zoned(instant, '+01:00')).toString(), '1976-11-18T15:23:30.123000000+01:00');
+  equal((new Zoned(instant, 'Europe/Vienna')).toCivilDateTime().toString(), '1976-11-18T15:23:30.123000000')
+  equal((new Zoned(instant, 'Europe/Vienna')).toCivilDate().toString(), '1976-11-18T00:00:00.000000000')
+  equal((new Zoned(instant, 'Europe/Vienna')).toCivilTime().toString(), '15:23:30.123000000')
   end();
 });
 
