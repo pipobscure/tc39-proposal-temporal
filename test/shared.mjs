@@ -1,4 +1,4 @@
-#! /usr/bin/env node --experimental-modules
+#! /usr/bin/env node -S --experimental-modules
 
 /*
 ** Copyright (C) 2018 Bloomberg LP. All rights reserved.
